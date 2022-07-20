@@ -1,6 +1,6 @@
 # A buy and sell Web App
 
-Create an IIT (ISM) version of OLX.com, that is, an E-commerce website where students can sell used items, to other students.
+Create an IITP version of OLX.com, that is, an E-commerce website where students can sell used items, to other students.
 
 ## User Permissions
 
