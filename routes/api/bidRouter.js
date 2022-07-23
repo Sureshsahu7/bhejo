@@ -1,15 +1,10 @@
-var express = require('express');
+const express = require('express');
 const bodyParser = require('body-parser');
 const bidRouter = express.Router();
-const mongoose=require('mongoose');
-
-var Bid = require('../../models/bids');
-var Products = require('../../models/products');
-var Users = require('../../models/users');
-
-var passport = require('passport');
-var authenticate = require('../../authenticate');
-
+const Bid = require('../../models/bids');
+const Products = require('../../models/products');
+const Users = require('../../models/users');
+const authenticate = require('../../authenticate');
 const cors = require('../cors');
 
 bidRouter.use(bodyParser.json());
@@ -95,8 +90,6 @@ bidRouter.route('/')
     res.end('PUT operation not supported on /bids');
 })
 .delete(cors.corsWithOptions,authenticate.verifyUser,authenticate.verifyAdmin,(req, res, next) => {
-    //res.statusCode = 403;
-    //res.end('DELETE operation not supported on /bids');
     Bid.remove({})
     .then((resp) => {
         console.log("Removed All Bid");

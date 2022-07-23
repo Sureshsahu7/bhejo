@@ -13,9 +13,6 @@ const minVal = len => val => val && val >= len;
 const isNumber = val => !isNaN(Number(val));
 const multiple = num => val => !val || val % num === 0;
 
-/*let fileAdder=(e)=>{
-    this.setState({imageFiles: this.state.imageFiles.concat(e.target.files)})
-};*/
 
 class UploadItem extends Component {
   constructor(props) {

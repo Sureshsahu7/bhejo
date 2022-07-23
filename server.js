@@ -4,15 +4,14 @@ const bodyParser=require('body-parser');
 const path=require('path');
 
 require('dotenv').config();
-var passport = require('passport');
-var authenticate = require('./authenticate');
+const passport = require('passport');
 
 
 // Loading routers
 const productRouter = require('./routes/api/productRouter');
 const userRouter = require('./routes/api/userRouter');
 const bidRouter = require('./routes/api/bidRouter');
-var favoriteRouter = require('./routes/api/favoriteRouter');
+const favoriteRouter = require('./routes/api/favoriteRouter');
 
 const app= express();
 

@@ -1,14 +1,11 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const productRouter = express.Router();
 const authenticate = require('../../authenticate');
 const cors = require('../cors');
 const Products = require('../../models/products');
-var aws = require('aws-sdk');
-var multerS3 = require('multer-s3');
-var multer = require('multer');
+const multer = require('multer');
 
 productRouter.use(bodyParser.json());
 const cloudinary = require('cloudinary').v2;
@@ -106,15 +103,6 @@ productRouter
     (req, res, next) => {
       res.statusCode = 403;
       res.end('DELETE operation not supported on /products');
-
-      /*   Products.remove({})
-    .then((resp) => {
-        console.log("Removed All Products");
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json');
-        res.json(resp);
-    }, (err) => next(err))
-    .catch((err) => next(err));*/
     }
   );
 
