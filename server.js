@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 const mongoURI = process.env.mongoURI;
 
 // Connect to mongo
-mongoose.connect(mongoURI,{ useNewUrlParser: true, useCreateIndex: true,useFindAndModify:false})
+mongoose.connect(mongoURI,{ useNewUrlParser: true, useCreateIndex: true,useFindAndModify:false,useUnifiedTopology: true})
 .then(()=> {console.log("MongoDB Connected");})
 .catch(err => console.log(err));
 
@@ -48,6 +48,7 @@ app.use('/api/favorites',favoriteRouter);
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
     // Set static folder
+    console.log("production")
     app.use(express.static('client/build'));
 
     app.get('*', (req, res) => {
