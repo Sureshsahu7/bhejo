@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-const whitelist = ['http://localhost:3000', 'http://localhost:5000','https://bhejo_iitp.netlify.app/','https://bhejo_iitp.netlify.app:3000','https://bhejo_iitp.netlify.app:5000'];
+const whitelist = ['http://localhost:3000', 'http://localhost:5000','https://bhejo-iitp.netlify.app/','https://bhejo-iitp.netlify.app:3000','https://bhejo-iitp.netlify.app:5000'];
 var corsOptionsDelegate = (req, callback) => {
     var corsOptions;
     console.log(req.header('Origin'));
