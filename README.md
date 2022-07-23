@@ -1,6 +1,6 @@
 # A buy and sell Web App
 
-Create an IIT (ISM) version of OLX.com, that is, an E-commerce website where students can sell used items, to other students.
+Create an IITP version of OLX.com, that is, an E-commerce website where students can sell used items, to other students.
 
 ## User Permissions
 
@@ -64,7 +64,6 @@ Hosted at **https://bhejo.herokuapp.com/**
 
 * [Redux](https://redux.js.org/basics/usage-with-react) - For flux architecture, and fetching rapidly data
 * [Mongoose](https://mongoosejs.com/docs/guide.html) - ODM for MongoDB
-* [AWS S3](https://console.aws.amazon.com/s3/) - Cloud server to store the images
 
 ## Steps followed to setup the project
 
