@@ -20,19 +20,16 @@ function RenderMenuItem({ product, deleteFavorite }) {
         width='100%'
         height='200'
         src={
-          'https://click-ism-20.s3.ap-south-1.amazonaws.com/' +
-          product.images[0].slice(22)
+          product.images[0]
         }
         onMouseOver={e => {
           if (product.images[1])
             e.currentTarget.src =
-              'https://click-ism-20.s3.ap-south-1.amazonaws.com/' +
-              product.images[1].slice(22);
+              product.images[1];
         }}
         onMouseOut={e => {
           e.currentTarget.src =
-            'https://click-ism-20.s3.ap-south-1.amazonaws.com/' +
-            product.images[0].slice(22);
+            product.images[0];
         }}
       />
 
@@ -97,8 +94,8 @@ class Favorites extends Component {
     } else if (this.props.favorites.errMess) {
       return (
         <div className='container full'>
-          <div className='row heading white-text'>
-            <h4>{this.props.favorites.errMess}</h4>
+          <div className='row heading white-text justify-content-center'>
+            <h4 align='center'>You have No favorites</h4>
           </div>
         </div>
       );
@@ -120,7 +117,7 @@ class Favorites extends Component {
       return (
         <div className='container full'>
           <div className='row heading'>
-            <div className='col-12 white-text justify-content-center'>
+            <div className='col-12 white-text justify-content-center mt-4'>
               <h3 align='center'>My Favorites</h3>
               <hr />
             </div>

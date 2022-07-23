@@ -3,7 +3,7 @@ import {Navbar, Form, FormGroup, Label, Input, Nav, NavbarToggler,Collapse,NavIt
 import {Dropdown,Row, Col,DropdownItem,DropdownMenu,DropdownToggle, InputGroupAddon} from 'reactstrap';
 import { NavLink,Link } from 'react-router-dom';
 import { Control, LocalForm, Errors  } from 'react-redux-form';
-
+import './HeaderComponent.css'
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => (val) && (val.length >= len);
@@ -81,16 +81,17 @@ class Header extends Component{
 
     render(){
         return (
-            <React.Fragment>
-                 <Navbar color="danger" dark expand="xl" fixed="top">
-                    <div className="container">
+            <React.Fragment>    
+                 <Navbar className="nav-color "  dark expand="md" fixed="top">
+                    <div className="container ml-3">
                      <NavbarToggler onClick={this.toggleNav}></NavbarToggler>
-                     <NavbarBrand className="mr-auto text-warning brand" href="/home">
-                     Click ISM
+                     <NavbarBrand className="mr-4 text-warning brand" href="/home">
+                     Bhejo
                      </NavbarBrand>
                      <Collapse isOpen={this.state.isNavOpen} navbar>
-                     <Nav navbar>
-                        <NavItem className="ml-2" onClick={this.toggleNav}>
+                    <div className="nav-width align-center">
+                     <Nav  navbar>
+                        <NavItem className="ml-4" onClick={this.toggleNav}>
                             <NavLink className="nav-link text-warning" to="/home">
                                <span className="fa fa-home fa-lg"/> Home
                            </NavLink>
@@ -123,11 +124,6 @@ class Header extends Component{
                             {
                             (this.props.auth.isAuthenticated)?(
                             <React.Fragment>
-                                <NavItem onClick={this.toggleNav} className="ml-2">
-                                <NavLink className="nav-link text-warning" to="/profile">
-                                     <span className="fa fa-user-circle-o fa-lg"/> My Profile
-                                </NavLink>
-                                </NavItem>
                                 <NavItem className="ml-2" onClick={this.toggleNav}>
                                 <NavLink className="nav-link text-warning" to="/favorites">
                                    <span className="fa fa-heart fa-lg"/> My favorites
@@ -150,6 +146,11 @@ class Header extends Component{
                                     <span className="fa fa-list fa-lg"/> My uploads
                                  </NavLink>
                                  </NavItem>
+                                 <NavItem onClick={this.toggleNav} >
+                                            <NavLink className="nav-link text-warning" to="/profile">
+                                                  <span className="fa fa-user-circle-o fa-lg"/> {this.props.auth.user && this.props.auth.user.username}
+                                             </NavLink>
+                                </NavItem>
                                  </React.Fragment>
 
                             ):
@@ -163,22 +164,19 @@ class Header extends Component{
                                      <span className="fa fa-clock-o fa-lg"/> Products pending
                                 </NavLink>
                                 </NavItem>
-                               {
-                                   /*
-                                 <NavItem onClick={this.toggleNav} className="ml-2">
-                                <NavLink className="nav-link text-warning" to="/stats">
-                                   <span className="fa fa-info-circle fa-lg"/> Stats
-                                </NavLink>
+                                <NavItem onClick={this.toggleNav} >
+                                            <NavLink className="nav-link text-warning" to="/profile">
+                                                  <span className="fa fa-user-circle-o fa-lg"/> {this.props.auth.user && this.props.auth.user.username}
+                                             </NavLink>
                                 </NavItem>
-                             
-                                   */
-                               }  </React.Fragment>
+                              </React.Fragment>
                             ):
                             (<div/>)
                         }
                      </Nav>
-                     <Nav className="ml-auto" navbar>
-                     <NavItem>
+                     </div>
+                     <Nav navbar>
+                     <NavItem className="align-center">
                                     { !this.props.auth.isAuthenticated ?
                         <Button outline color="warning" onClick={this.toggleModal}>
                                             <span className="fa fa-sign-in fa-lg"></span> Login
@@ -189,7 +187,6 @@ class Header extends Component{
                                         </Button>
                                         :
                                         <div>
-                                        <div className="navbar-text text-warning mr-1">{this.props.auth.user && this.props.auth.user.username}</div>
                                         <Button outline color="warning" onClick={this.handleLogout}>
                                             <span className="fa fa-sign-out fa-lg"></span> Logout
                                             {this.props.auth.isLoading ?

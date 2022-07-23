@@ -3,6 +3,7 @@ import ImageUploader from 'react-images-upload';
 import { Button, Label, Col, Row } from 'reactstrap';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import Loading from './LoadingComponent';
+import './UploadItemComponent.css'
 
 const required = val => val && val.length;
 const requiredNum = val => !!val;
@@ -66,9 +67,9 @@ class UploadItem extends Component {
       );
     } else
       return (
-        <div className='container  white-text'>
-          <div className='row justify-content-center heading'>
-            <div className='col-12'>
+        <div className='container  white-text '>
+          <div className='row justify-content-center mt-3'>
+            <div className='col-12 mt-5'>
               <h3 align='center'> Upload a product</h3>
             </div>
           </div>
@@ -104,6 +105,7 @@ class UploadItem extends Component {
                 }
               }}
             >
+              <div className="card-detail">
               <Row className='form-group'>
                 <Label htmlFor='name' md={2}>
                   Name{' '}
@@ -153,7 +155,7 @@ class UploadItem extends Component {
                 </Col>
               </Row>
               <Row className='form-group'>
-                <Col md={4}>
+                <Col md={2} >
                   <Control.checkbox
                     model='.bid'
                     id='bid'
@@ -336,6 +338,7 @@ class UploadItem extends Component {
                   </Button>
                 </Col>
               </Row>
+              </div>
             </LocalForm>
           </div>
           <br />

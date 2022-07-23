@@ -267,10 +267,9 @@ class ProductDetail extends Component {
       for (let i = 0; i < imageArr.length; i++) {
         items.push({
           id: i,
-          altText: this.props.product.images[i].slice(22),
+          altText: this.props.product.images[i],
           src:
-            'https://click-ism-20.s3.ap-south-1.amazonaws.com/' +
-            this.props.product.images[i].slice(22)
+            this.props.product.images[i]
         });
       }
     }

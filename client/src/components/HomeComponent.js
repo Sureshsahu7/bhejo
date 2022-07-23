@@ -98,19 +98,16 @@ class Home extends Component {
               width='100%'
               height='200'
               src={
-                'https://click-ism-20.s3.ap-south-1.amazonaws.com/' +
-                product.images[0].slice(22)
+                product.images[0]
               }
               onMouseOver={e => {
                 if (product.images[1])
                   e.currentTarget.src =
-                    'https://click-ism-20.s3.ap-south-1.amazonaws.com/' +
-                    product.images[1].slice(22);
+                    product.images[1];
               }}
               onMouseOut={e => {
                 e.currentTarget.src =
-                  'https://click-ism-20.s3.ap-south-1.amazonaws.com/' +
-                  product.images[0].slice(22);
+                  product.images[0];
               }}
             />
             <CardBody className='text-black'>
@@ -193,9 +190,10 @@ class Home extends Component {
 
     return (
       <div className='container align-self-center'>
-        <div className='heading d-none d-md-block'>
+        <div className=' d-none d-md-block'>
           <style>
             {`.custom-tag {
+                    margin-top: 80px;
                     width: 100%;
                     max-height: 500px;
                   }`}
@@ -225,10 +223,10 @@ class Home extends Component {
             />
           </Carousel>
         </div>
-        <div className='heading row row-content white-text'>
+        <div className='mt-4 row row-content white-text'>
           <p>
             The first website to sell your old as well as new items with bidding
-            allowed, in IIT (ISM). You will find various categories of products
+            allowed, in IITP. You will find various categories of products
             here : Stationary, Electronic Gadgets, Bicycles, Books, Clothes,
             Sports, etc. You will see a list of featured products below, based
             upon the no. of views{' '}
@@ -236,7 +234,7 @@ class Home extends Component {
           <p>
             So, what are you waiting for, just Register and login to get into
             the store. Upload your old stuff, kept in your rooms, it may help
-            someone in need. Earn huge profits by allowing auction on your
+            someone in need. Earn profits by allowing auction on your
             items. Don't miss this opportunity. Just go for it.{' '}
           </p>
         </div>

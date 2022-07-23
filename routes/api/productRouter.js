@@ -10,58 +10,26 @@ var aws = require('aws-sdk');
 var multerS3 = require('multer-s3');
 var multer = require('multer');
 
-aws.config.update({
-  secretAccessKey: process.env.AWSSecretKey,
-  accessKeyId: process.env.AWSAccessKeyId,
-  region: 'ap-south-1'
-});
-
-var s3 = new aws.S3();
-
 productRouter.use(bodyParser.json());
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
-var storage = multerS3({
-  s3: s3,
-  bucket: 'click-ism-20',
-  metadata: function(req, file, cb) {
-    cb(null, { fieldName: file.fieldname });
-  },
-  key: function(req, file, cb) {
-    filenameSplit = file.originalname.split('.');
-    cb(
-      null,
-      filenameSplit[0] +
-        Date.now() +
-        '.' +
-        filenameSplit[filenameSplit.length - 1]
-    );
-  },
-  acl: 'public-read'
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_KEY,
+    api_secret: process.env.CLOUDINARY_SECRET
 });
 
-/*var storage = multer.diskStorage(
-    {
-      destination: (req, file, cb) => {
-          cb(null, './client/public/uploads/');
-      },
-
-      filename: (req, file, cb) => {
-          filenameSplit=file.originalname.split(".");
-          cb(null, filenameSplit[0]+Date.now()+"."+filenameSplit[filenameSplit.length-1])
-      }
+const storage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: 'uploads',
+        allowedFormats: ['jpeg', 'png', 'jpg' , 'gif']
     }
-  );*/
+});
 
-// File filter
-const imageFileFilter = (req, file, cb) => {
-  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-    return cb(new Error('You can upload only image files!'), false);
-  }
-  cb(null, true);
-};
 
-const upload = multer({ storage: storage, fileFilter: imageFileFilter });
-
+const upload = multer({ storage});
 productRouter
   .route('/')
   .options(cors.corsWithOptions, (req, res) => {
@@ -87,18 +55,17 @@ productRouter
     authenticate.verifyUser,
     upload.array('images', 4),
     (req, res, next) => {
-      console.log(req.files);
-      console.log(req.file);
+      console.log(req.files[0].path);
       console.log(req.body);
       Products.create({
         ...req.body,
         images: [
           req.files[0]
-            ? 'client/public/uploads/' + req.files[0].key
+            ? req.files[0].path
             : 'client/public/uploads/Not_available.jpg',
-          req.files[1] ? 'client/public/uploads/' + req.files[1].key : '',
-          req.files[2] ? 'client/public/uploads/' + req.files[2].key : '',
-          req.files[3] ? 'client/public/uploads/' + req.files[3].key : ''
+          req.files[1] ? req.files[1].path : '',
+          req.files[2] ? req.files[2].path : '',
+          req.files[3] ? req.files[3].path : ''
         ],
         owner: req.user._id
       })
