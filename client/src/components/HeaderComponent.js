@@ -89,7 +89,7 @@ class Header extends Component{
                      Bhejo
                      </NavbarBrand>
                      <Collapse isOpen={this.state.isNavOpen} navbar>
-                    <div className="nav-width align-center">
+                    <div className="nav-width align-center ml-auto">
                      <Nav  navbar>
                         <NavItem className="ml-4" onClick={this.toggleNav}>
                             <NavLink className="nav-link text-warning" to="/home">
