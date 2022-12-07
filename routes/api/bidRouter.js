@@ -7,6 +7,7 @@ const Users = require('../../models/users');
 const authenticate = require('../../authenticate');
 const cors = require('../cors');
 
+
 bidRouter.use(bodyParser.json());
 
 bidRouter.route('/')

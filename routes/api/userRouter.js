@@ -10,6 +10,7 @@ const cors = require('../cors');
 router.use(bodyParser.json());
 
 /* GET users listing. */
+ 
 router.options('*', cors.corsWithOptions, (req, res) => { res.sendStatus(200); 
   res.setHeader('Access-Control-Allow-Credentials', 'true');} )
 router.get('/', cors.corsWithOptions,

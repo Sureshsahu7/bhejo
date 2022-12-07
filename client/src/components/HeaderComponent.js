@@ -89,7 +89,7 @@ class Header extends Component{
                      Bhejo
                      </NavbarBrand>
                      <Collapse isOpen={this.state.isNavOpen} navbar>
-                    <div className="nav-width align-center">
+                    <div className="nav-width align-center ml-auto">
                      <Nav  navbar>
                         <NavItem className="ml-4" onClick={this.toggleNav}>
                             <NavLink className="nav-link text-warning" to="/home">
@@ -175,7 +175,8 @@ class Header extends Component{
                         }
                      </Nav>
                      </div>
-                     <Nav navbar>
+                     <div className="ml-auto">
+                     <Nav navbar className="d-flex flex-row-reverse">
                      <NavItem className="align-center">
                                     { !this.props.auth.isAuthenticated ?
                         <Button outline color="warning" onClick={this.toggleModal}>
@@ -201,6 +202,7 @@ class Header extends Component{
                     <Registerer isSignedIn={this.props.auth.isAuthenticated} toggleRegister={()=>{this.toggleRegister()}}/>
                      </NavItem>
                       </Nav>
+                      </div>
                      </Collapse>
                     </div>
                  </Navbar>
